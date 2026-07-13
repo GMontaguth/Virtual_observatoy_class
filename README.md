@@ -125,7 +125,7 @@ Being explicit about this seems more useful than being vague about it — partic
 workshop whose entire argument is that you should know where your outputs came from.
 
 **What the AI did:** drafted the prose of the tutorial, produced the Spanish and Portuguese
-translations, and built the slides.
+translations.
 
 **What it did not do:** the science. The choice of question, the sample, the photometry, the
 quality cuts, every query, and every result in this repository were decided, executed and
