@@ -41,8 +41,18 @@ whether colour really predicts morphology.
 | **`TOPCAT-workshop-EN.md`** | The tutorial — **main version** |
 | `TOPCAT-workshop-ES.md` | Spanish translation |
 | `TOPCAT-workshop-PT.md` | Portuguese translation |
+| **[`Astronomical-Databases-Workshop.pptx`](Astronomical-Databases-Workshop.pptx)** | **The slides.** 21 slides, with speaker notes. |
 | **`sdss_stripe82_galaxies.vot`** | **The data.** Use this if the archive is slow or down. |
 | `images/` | Figures |
+
+### The slides
+
+[**`Astronomical-Databases-Workshop.pptx`**](Astronomical-Databases-Workshop.pptx) — the deck used to teach this
+workshop. Roughly ten minutes of context on SIMBAD, VizieR, Aladin and TOPCAT, then screenshots
+walking through each step of the analysis, ending with the Galaxy Zoo cross-match.
+
+**Every slide has speaker notes** (`View → Notes Page`) saying what to say and where students
+tend to get stuck.
 
 ---
 
@@ -105,3 +115,27 @@ completely fine. None of them throws an error.
 - **K-corrections** — Chilingarian, Melchior & Zolotukhin 2010, MNRAS 405, 1409
 - **Cosmological distances** — Hogg 2000, [astro-ph/9905116](https://arxiv.org/abs/astro-ph/9905116)
 - **TOPCAT** — M. B. Taylor 2005, ASP Conf. Ser. 347, 29
+
+---
+
+## On the use of AI
+
+**[Claude](https://claude.ai) (Anthropic) was used to write and translate these materials.**
+Being explicit about this seems more useful than being vague about it — particularly in a
+workshop whose entire argument is that you should know where your outputs came from.
+
+**What the AI did:** drafted the prose of the tutorial, produced the Spanish and Portuguese
+translations, and built the slides.
+
+**What it did not do:** the science. The choice of question, the sample, the photometry, the
+quality cuts, every query, and every result in this repository were decided, executed and
+verified by the author in TOPCAT. The twelve traps are not hypothetical — they are mistakes
+encountered while building this analysis, which is why they are in it.
+
+The same standard the workshop asks of a catalogue applies here: **a tool that produces
+plausible output is not a tool that produces correct output.** Verify it yourself. That
+includes this.
+
+---
+
+*Gissel Montaguth · [@GMontaguth](https://github.com/GMontaguth)*
