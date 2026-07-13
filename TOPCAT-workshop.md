@@ -41,9 +41,10 @@ That is the destination. Now let's get there.
 **[Part 1 — The Virtual Observatory](#part-1--the-virtual-observatory)**
 **[Part 2 — Exploring a TAP service](#part-2--exploring-a-tap-service)**
 **[Part 3 — Your first ADQL query](#part-3--your-first-adql-query)**
-**[Part 4 — Looking at the data, and finding the bimodality](#part-4--looking-at-the-data--and-finding-the-bimodality)**
-**[Part 5 — Clicking on a galaxy](#part-5--clicking-on-a-galaxy--from-a-number-to-an-image)**
-**[Appendix — The eight traps](#appendix--the-eight-traps)**
+**[Part 4 — Looking at the data, and finding the bimodality](#part-4--looking-at-the-data-and-finding-the-bimodality)**
+**[Part 5 — Clicking on a galaxy](#part-5--clicking-on-a-galaxy-from-a-number-to-an-image)**
+**[Part 6 — Cross-matching: does colour really predict morphology?](#part-6--cross-matching-does-colour-really-predict-morphology)**
+**[Appendix — The twelve traps](#appendix--the-twelve-traps)**
 
 ---
 ---
@@ -1118,25 +1119,429 @@ and you would never have known from the numbers alone.
 ---
 ---
 
-# Appendix — The eight traps
+# Part 6 — Cross-matching: does colour really predict morphology?
 
-Every one of these **produces output that looks fine**. None throws an error.
+In Part 5 you clicked two galaxies and saw that the red one was smooth and the blue one had
+structure. **Two galaxies is an anecdote.**
+
+Now let's test it on **three thousand**.
+
+**The catch:** morphology is not in SDSS. It lives in a completely different catalogue,
+produced by different people using a different method. To answer the question **you have no
+choice but to cross-match.**
+
+This is the whole argument for the Virtual Observatory, in one exercise.
+
+---
+
+## 6.1 The catalogue: Galaxy Zoo 1
+
+**Galaxy Zoo** asked hundreds of thousands of volunteers to look at SDSS images and classify
+them by eye. Galaxy Zoo 1 (Lintott et al. 2011, MNRAS 410, 166) is the original.
+
+In VizieR the table is:
+
+```
+J/MNRAS/410/166/galaxies
+```
+
+> **Finding it yourself:** in the TAP window, tick **both `Name` and `Descrip`**, search
+> `galaxy zoo`, and expand `J_MNRAS`. (Remember Trap #1 — with `Name` alone you find nothing.)
+
+### The columns that matter
+
+| Column | Type | Description |
+|---|---|---|
+| `RAJ2000`, `DEJ2000` | DOUBLE (deg) | SDSS coordinates |
+| **`fE`** | SMALLINT | **`[0/1]` "Elliptical" flag** |
+| **`fS`** | SMALLINT | **`[0/1]` "Spiral" flag** |
+| **`fU`** | SMALLINT | **`[0/1]` Uncertain flag** |
+| `objID` | CHAR(18) | SDSS object identifier |
+| `pDK`, `pDKm` | DOUBLE | Fraction of "Don't Know" votes |
+| `Nt`, `N`, `Nt1`, `Nt2` | SMALLINT | Vote counts |
+
+---
+
+## 6.2 ⚠️ What `fS` actually means — read this before you write your conclusions
+
+**VizieR labels `fS` as "Spiral". Do not take that at face value.**
+
+Galaxy Zoo 1 did **not** ask volunteers *"is this a spiral?"* It asked, roughly:
+
+> *"Is this object **smooth and rounded**, or does it have **some structure / features**?"*
+
+So the **`fS` class is really "not-elliptical, with visible structure"**. It contains:
+
+- genuine spirals
+- **discs with no clear arms**
+- **lenticulars (S0)**
+- **edge-on discs**
+- **irregulars**
+
+**That is not the same thing as "spiral" in the strict morphological sense.**
+
+> **Be precise in what you claim.** You are testing whether colour predicts
+> **"smooth vs. structured"** — not whether it predicts Hubble type.
+>
+> That is still a real and interesting result. It is just a *different* result.
+
+### And the flags are a *cut*, not a measurement
+
+`fE` and `fS` are binary flags derived from **vote fractions** — an object is flagged only when
+a large majority of volunteers agreed (and after correcting for classification bias).
+
+**Ambiguous galaxies end up with `fU = 1`** and are flagged as **neither**.
+
+### 🎓 Exercise (do this before drawing conclusions)
+
+**How many galaxies have `fU = 1`?**
+
+If that number is large, then the objects you *are* classifying are only the most
+**visually obvious** ones — and **you are seeing a cleaner correlation than actually exists.**
+
+You have selected for unambiguity. That is a bias, and it is a bias *towards your own
+conclusion*.
+
+---
+
+## 6.3 Loading Galaxy Zoo
+
+**`VO → Table Access Protocol (TAP) Query`** → `TAPVizieR` → `Use Service`
+
+Paste into the **`ADQL Text`** box:
+
+```sql
+SELECT TOP 100000
+  RAJ2000, DEJ2000,
+  fE, fS, fU
+FROM "J/MNRAS/410/166/galaxies"
+WHERE RAJ2000 BETWEEN 320 AND 340
+  AND DEJ2000 BETWEEN -1.25 AND 1.25
+```
+
+**`Run Query`**
+
+| Line | Why |
+|---|---|
+| `RAJ2000 BETWEEN 320 AND 340` | **The same Stripe 82 region.** Do not download the whole sky. |
+| `DEJ2000 BETWEEN -1.25 AND 1.25` | ditto |
+| `fE, fS, fU` | The three morphology flags |
+| *(no filter on the flags)* | **Deliberate** — we want to count the uncertain ones |
+
+> **Expect many more galaxies than your 7,539.** Galaxy Zoo does not require a spectrum;
+> your SDSS sample does. **This asymmetry matters — see §6.6.**
+
+---
+
+## 6.4 ⚠️ Before matching: CHECK YOUR SUBSET
+
+Go to the main window, select your **SDSS table**, and look at **`Row Subset:`**.
+
+If it says **`good`**, TOPCAT will match only those **6,851** rows — not all 7,539.
+
+**That is what we want** — there is no point looking for the morphology of galaxies whose
+photometry is broken.
+
+**But do it on purpose, not by accident.** This is exactly the trap from §4.6: *if a result
+surprises you, the first thing you check is which subset is active.*
+
+---
+
+## 6.5 The cross-match
+
+**`Joins → Pair Match (2 tables)`**
+
+| Field | Value |
+|---|---|
+| **Algorithm** | **`Sky`** |
+| **Max Error** | **`2`** arcsec |
+| **Table 1** | your SDSS table |
+| → RA column | `RA_ICRS` |
+| → Dec column | `DE_ICRS` |
+| → Row Subset | **`good`** ⚠️ |
+| **Table 2** | Galaxy Zoo |
+| → RA column | `RAJ2000` |
+| → Dec column | `DEJ2000` |
+| → Row Subset | `All` |
+| **Match Selection** | `Best match, symmetric` |
+| **Join Type** | **`1 and 2`** ⚠️ **critical — see below** |
+
+**`Go`**
+
+---
+
+## 🔥 TRAP #9: the Join Type will silently lie to you
+
+**Get this wrong and TOPCAT gives you a table that looks perfect and is useless.**
+
+| Join Type | What it returns |
+|---|---|
+| **`1 and 2`** | **Only rows that matched.** ✅ What you want. |
+| `All from 1` | **Every** row of table 1, with table 2's columns **left empty** where there was no match |
+| `All from 2` | The mirror image |
+| `1 or 2` | Everything from both |
+
+### How to spot the mistake
+
+If you use `All from 1`, your output has **exactly 6,851 rows** — the same as your input.
+
+**It looks like a 100% match rate.** It is not. Open the table and you will see half the
+Galaxy Zoo columns are **blank**.
+
+> **A cross-match that returns the same number of rows as your input table is a red flag,
+> not a success.**
+
+**With `1 and 2` you should get about 3,053 rows.**
+
+---
+
+## 6.6 🚨 Read the match rate. It is telling you something.
+
+| | |
+|---|---|
+| SDSS galaxies (`good`) | **6,851** |
+| With morphology in Galaxy Zoo | **3,053** |
+| **Match rate** | **≈ 45%** |
+
+**More than half your galaxies have no morphology.**
+
+### This is not a failure of the cross-match
+
+The astrometry is fine (see §6.7). The radius is fine. The method worked.
+
+**Galaxy Zoo simply did not classify every SDSS galaxy.** It has its **own selection
+function** — magnitude limits, angular-size limits, image-quality criteria.
+
+> **Cross-matching two catalogues does not give you their union.**
+> **It gives you the INTERSECTION of two selection functions.**
+
+### ⚠️ And now the question nobody asks
+
+**Is that 55% loss random?**
+
+**Almost certainly not.** Galaxy Zoo needs to *resolve* a galaxy to classify it. So you have
+probably preferentially lost:
+
+- the **angularly smallest** galaxies → the **most distant** ones
+- the **faintest** ones
+
+**And that correlates with colour**, because red galaxies are fainter at fixed stellar mass.
+
+> **Your matched sample is not a random subsample of your original sample.**
+> **It is a biased one — and the bias runs in the direction of your result.**
+
+### 🎓 Exercise
+
+Plot a **histogram of `zsp`** for the matched table, and compare it with the same histogram
+for the full sample.
+
+**Did the peak shift to lower redshift?** If so, you have confirmed the bias.
+
+---
+
+## 6.7 The step nobody does: the separation histogram
+
+**`Graphics → Histogram`** on the matched table → **X = `Separation`**
+
+### What you should see
+
+```
+0.0 – 0.1"  →  ~2,300 galaxies   (75%)
+0.1 – 0.2"  →    ~720            (24%)
+0.2 – 0.5"  →     ~30
+> 0.5"      →  almost nothing
+```
+
+**99% of matches fall within 0.2 arcsec.** A brutal, immediate drop-off.
+
+**The matches are real.** No ambiguity.
+
+### Why it is so clean here
+
+**Both catalogues use SDSS astrometry.** You are not cross-matching two different telescopes —
+it is **the same object, measured once**. The differences are rounding and reduction epoch.
+
+### ⚠️ But look at the tail
+
+There are a handful of matches at **1.8″, 2.7″, 3.2″**.
+
+In a distribution where 99% falls below 0.2″, an object at 3″ is **probably not the same
+galaxy** — it is a **neighbour** that happened to fall inside your search radius.
+
+> **Your search radius was too generous.**
+> This histogram tells you that **0.5″ would have been enough** — and would have removed the
+> false positives without losing a single real match.
+
+**This is a normal iteration:** pick a generous radius, look at the histogram, **tighten it**.
+Nobody gets it right first time.
+
+### The contrast worth remembering
+
+| Histogram shape | What it means |
+|---|---|
+| **Sharp drop at small separation** | Matches are real. Trust them. |
+| **Flat out to the search radius** | **You are matching noise.** The "matches" are random neighbours. |
+
+**Always look. It costs ten seconds.**
+
+---
+
+## 6.8 The payoff: overlay morphology on the CMD
+
+On your **matched table**, create two subsets:
+
+**`Views → Row Subsets → New Subset`**
+
+| Name | Expression |
+|---|---|
+| `elliptical` | `fE == 1` |
+| `spiral` | `fS == 1` |
+
+*(remember: `==` is double, and see §6.2 — `fS` really means "structured", not "spiral")*
+
+Now plot:
+
+**`Graphics → Plane Plot`**
+
+| Field | Value |
+|---|---|
+| **X** | `Mr` |
+| **Y** | `uPmag - rPmag` |
+| **Axes** | `X Flip` |
+| **Layers** | your full sample as **contours**, plus the two subsets as **coloured points** |
+
+---
+
+## 6.9 What you see
+
+**The `fE` galaxies sit in the RED peak.** `u−r ≈ 2.8–3.5`, and they are the most luminous
+(`Mr ≈ −22 to −23`).
+
+**The `fS` galaxies sit in the BLUE peak.** `u−r ≈ 1.8–2.3`, and less luminous.
+
+> **You split the galaxies with a number.**
+> **An independent catalogue split them with human eyes looking at pictures.**
+> **You got the same split.**
+
+That is the quantitative confirmation of what you saw by eye with two cutouts in Part 5.
+
+---
+
+## 6.10 🚨 Now look at the exceptions — that is where the science is
+
+**There are red points low down.** `fE` galaxies at `u−r ≈ 2.2` — in the blue region.
+
+**There are blue points high up.** `fS` galaxies at `u−r ≈ 3.0` — on the red sequence.
+
+**These are RED DISCS and BLUE ELLIPTICALS.**
+
+**They are not errors.** They are real objects, and they are **interesting**:
+
+| Object | What it probably is |
+|---|---|
+| **Red disc** | A **quenched** disc — it stopped forming stars but kept its structure. Or an edge-on spiral, reddened by its own dust. |
+| **Blue elliptical** | An elliptical with **recent star formation** — perhaps a recent merger, or accreted gas. |
+
+> **The bulk of the population is boring. The exceptions are the papers.**
+
+---
+
+## 6.11 The real conclusion
+
+> Colour and morphology **correlate strongly, but they are not the same thing.**
+>
+> **Colour** measures the **stellar population**: are there young stars?
+> **Morphology** measures the **dynamical structure**: is there a disc?
+>
+> **That they correlate is a deep physical fact** — it means the processes that shut down star
+> formation are linked to the processes that destroy discs.
+>
+> **That they do not correlate *perfectly* is equally deep** — it means the two can be
+> decoupled. A galaxy can be quenched without losing its disc.
+
+---
+
+## ✅ Checkpoint
+
+- [ ] You know that **`fS` means "structured", not strictly "spiral"** (§6.2)
+- [ ] You counted the **`fU = 1`** galaxies and know what that bias does to you
+- [ ] You used **`Join Type: 1 and 2`**, and can explain what `All from 1` would have done
+- [ ] Match rate ≈ **3,053 / 6,851 = 45%**, and you can explain **why it is not 100%**
+- [ ] You plotted the **`Separation` histogram** and it **drops sharply**
+- [ ] You can say what search radius you **should** have used, and why
+- [ ] Ellipticals land on the red peak; structured galaxies on the blue one
+- [ ] **You found the exceptions**, and you can say what they might be
+
+---
+---
+
+# Appendix — The twelve traps
+
+Every one of these **produces output that looks fine**. None of them throws an error.
+
+## Finding the data
 
 | # | Trap | What it costs you |
 |---|---|---|
-| **1** | Searching `Name` but not `Descrip` | You conclude the data do not exist. They do. |
+| **1** | Searching `Name` but not `Descrip` | You conclude the data do not exist. They do — 20× more of them. |
 | **2** | Assuming where a catalogue lives | SDSS is in `large_tables`, not `II_photometry` |
-| **3** | `zsp` / `zph` / `zmag` / `zpmag` / `zPmag` | Five columns, one letter apart, five meanings |
+
+## Choosing the columns
+
+| # | Trap | What it costs you |
+|---|---|---|
+| **3** | `zsp` / `zph` / `zmag` / `zpmag` / `zPmag` | Five columns, one letter apart, five different meanings |
 | **4** | PSF magnitudes for galaxies | A "red sequence" that is partly an aperture artefact |
 | **5** | `class` instead of `spCl` | Quasars contaminating your galaxy sample |
 | **6** | Forgetting `f_zsp = 0` | Garbage redshifts in your sample |
 | **7** | Unquoted identifiers in ADQL | Ambiguity — **or worse, silent selection of the wrong column** |
-| **8** | Trusting quality flags alone | `clean = 1` and `f_zsp = 0`, and *still* magnitudes of 33 |
+
+## Trusting the data
+
+| # | Trap | What it costs you |
+|---|---|---|
+| **8** | Trusting quality flags alone | `clean = 1` **and** `f_zsp = 0`, and *still* magnitudes of 33 and redshift errors of 1.8 |
+| **12** | Trusting a column label | `fS` says "Spiral". It actually means "not smooth". |
+
+## Cross-matching
+
+| # | Trap | What it costs you |
+|---|---|---|
+| **9** | Wrong `Join Type` | A table with the "right" number of rows and half its columns empty — **it looks like a 100% match** |
+| **10** | Never checking the separation histogram | You cannot tell a real match from a random neighbour |
+| **11** | Assuming a cross-match preserves your sample | **You get the intersection of two selection functions — and the loss is not random** |
+
+---
 
 ## The single thing to remember
 
 > **The database will never tell you that you asked the wrong question.**
+>
 > **The plot will never tell you that you plotted the wrong column.**
+>
 > **The flag will never tell you that it missed something.**
 >
+> **The cross-match will never tell you that it threw away half your sample — and that the
+> half it threw away was not random.**
+>
 > **That is your job.**
+
+---
+
+## What you actually learned
+
+Not TOPCAT. TOPCAT is buttons; you can look those up.
+
+What you learned is a **habit of suspicion** applied in a specific order:
+
+1. **Explore the schema before you query.** Names lie; descriptions and UCDs do not.
+2. **Look at the statistics before you plot.** Minima, maxima, nulls.
+3. **Filter the quantity you actually plot** — not just its ingredients.
+4. **Verify every result with a method that does not share the first method's assumptions.**
+   Contours have a smoothing parameter; a histogram does not.
+5. **Click on the outliers and look at the image.** It is the most under-used debugging tool
+   in astronomy.
+6. **Ask what your sample lost, and whether the loss was random.** It usually was not.
+7. **Say out loud what you did not correct for.**
+
+A pipeline that runs is not a pipeline that is right.
