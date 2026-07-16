@@ -8,7 +8,7 @@
 
 | | | |
 |:---:|:---:|:---:|
-| 🇬🇧 **[English](TOPCAT-workshop-EN.md)** | 🇪🇸 **[Español](TOPCAT-workshop-ES.md)** | 🇧🇷 **[Português](TOPCAT-workshop-PT.md)** |
+| **[English](TOPCAT-workshop-EN.md)** | **[Español](TOPCAT-workshop-ES.md)** | **[Português](TOPCAT-workshop-PT.md)** |
 | *main version* | *traducción* | *tradução* |
 
 > **Note:** TOPCAT's interface is in English. In all three versions, **menu names, buttons and
