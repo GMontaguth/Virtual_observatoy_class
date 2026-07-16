@@ -413,7 +413,7 @@ Paste into the **`ADQL Text`** box and click **`Run Query`**:
 SELECT TOP 30000
   RA_ICRS, DE_ICRS,
   "uPmag", "gPmag", "rPmag", "iPmag", "zPmag",
-  e_uPmag, e_gPmag, e_rPmag, e_iPmag, e_zPmag,
+  "e_uPmag", "e_gPmag", "e_rPmag", "e_iPmag", "e_zPmag",
   zsp, e_zsp, spCl
 FROM "V/154/sdss16"
 WHERE RA_ICRS BETWEEN 320 AND 340
@@ -465,7 +465,7 @@ It is **exactly the result of the query above**. You lose nothing.
 | `DE_ICRS BETWEEN -1.25 AND 1.25` | Stripe 82 is narrow in declination. *This* is what makes it Stripe 82. |
 | `spCl = 'GALAXY'` | Galaxies — **not QSOs, not stars**. |
 | `zsp > 0.02` | Removes spurious redshifts and very nearby objects. |
-| `zsp < 0.2` | **The genuinely local universe.** See §3.4. |
+| `zsp < 0.2` | **The local universe.**  |
 | **`f_zsp = 0`** | **The redshift fit is reliable.** |
 | `mode = 1` | Primary detections only — no duplicates. |
 | `clean = 1` | SDSS's own "clean photometry" flag. |
@@ -476,20 +476,8 @@ It is **exactly the result of the query above**. You lose nothing.
 
 ---
 
-## 3.4 Why `z < 0.2` and not `z < 0.3`
 
-| Reason | Effect |
-|---|---|
-| **The K-correction shrinks.** ~0.2 mag in `r` at z=0.2, versus ~0.4 at z=0.3 | Less systematic residual |
-| **Incompleteness drops sharply.** SDSS's spectroscopic sample is flux-limited | At z=0.3 you only see intrinsically very bright galaxies — and the truncation is **colour-dependent**, since red galaxies are fainter at fixed mass |
-| **Cosmology stops mattering.** At z<0.2, Ωm = 0.3 vs 0.25 is negligible | You need not worry about having picked the "right" cosmology |
-
-**What you give up:** some statistics and a little dynamic range in $M_r$. **A cheap price** —
-bimodality shows up perfectly well with 7,000 galaxies.
-
----
-
-## 3.5 What the query does **not** filter — on purpose
+## 3.4 What the query does **not** filter — on purpose
 
 - ❌ No magnitude cuts
 - ❌ No colour cuts
@@ -502,7 +490,7 @@ flag. You will still find magnitudes of 33. Hold that thought.
 
 ---
 
-## 3.6 🔥 TRAP #7: ADQL is case-insensitive — and it will stop you
+## 3.5 🔥 TRAP #7: ADQL is case-insensitive — and it will stop you
 
 Run the query **without** the double quotes and you get:
 
@@ -543,7 +531,7 @@ galaxies.
 
 ---
 
-## 3.7 Why the query is slow: reading the `Indexed` column
+## 3.6 Why the query is slow: reading the `Indexed` column
 
 The delay is not a bug. It is information.
 
