@@ -1,9 +1,9 @@
 # Astronomical Databases and TOPCAT
 ## A hands-on workshop: finding galaxy bimodality in SDSS
 
-**What you will do:** starting from nothing, you will pull a sample of galaxies from a
-public archive, clean it, compute their absolute magnitudes, and discover that galaxies come
-in **two distinct families** — one red and dead, one blue and star-forming.
+**What you will do:** starting from nothing, you will pull a sample of galaxies from a public
+archive, clean it, compute their absolute magnitudes, and discover that galaxies come in **two
+distinct families** — one red and dead, one blue and star-forming.
 
 You will then click on a point in your plot and **see the galaxy**.
 
@@ -13,24 +13,22 @@ No code. Ninety minutes.
 
 ## Where you are going
 
-**This is the end result. This is what you should have on your screen by the end of the
-session:**
+**This is the end result — what you should have on your screen by the end of the session:**
 
 ![Colour-magnitude diagram with two galaxy cutouts](images/cmd-two-galaxies.png)
 
-On the left: the **colour–magnitude diagram**, with contours revealing **two separate peaks**.
+On the left, the **colour–magnitude diagram**, with contours revealing **two separate peaks**.
 
 On the right, two galaxies you clicked on directly in that plot:
 
 - **Top** — from the **upper peak** (`u−r ≈ 2.7`): a **smooth, yellowish elliptical**.
   No structure.
-- **Bottom** — from the **lower peak** (`u−r ≈ 1.7`): a **bluer disc** with visible
-  structure and a bright nucleus.
+- **Bottom** — from the **lower peak** (`u−r ≈ 1.7`): a **bluer disc** with visible structure
+  and a bright nucleus.
 
 **You will select these galaxies using nothing but a number.** You will never tell the computer
-anything about their shape.
-
-And yet the two peaks turn out to be **two kinds of galaxy that look different**.
+anything about their shape — and yet the two peaks turn out to be **two kinds of galaxy that look
+different**.
 
 That is the destination. Now let's get there.
 
@@ -60,11 +58,10 @@ Before the VO, every astronomical archive was an island:
 - Chandra had another.
 - The catalogue from a 1998 paper lived as a `.txt` file on somebody's personal page.
 
-To cross-match SDSS with 2MASS you had to download both, understand two different formats,
-write a conversion script, and match them yourself. Every single time. For every pair of
-catalogues.
+To cross-match SDSS with 2MASS, you had to download both, learn two different formats, write a
+conversion script, and match them yourself — every single time, for every pair of catalogues.
 
-This was not merely tedious — it was a **barrier**. Only people who could code well could do
+This was not merely tedious; it was a **barrier**. Only people who could code well could do
 multi-wavelength science.
 
 ## 1.2 What the VO actually is
@@ -75,10 +72,10 @@ archives speak the same language.
 It is **not a place**. It is **not a server**. It is **not a website you log into**.
 It is a *protocol* — much like HTTP.
 
-The goal: use every archive in the world **as if it were a single database**.
+The goal: to use every archive in the world **as if it were a single database**.
 
-The standards are defined by the **IVOA** (International Virtual Observatory Alliance). That
-is why VO identifiers begin with `ivo://` — just as web addresses begin with `http://`.
+The standards are defined by the **IVOA** (International Virtual Observatory Alliance). That is
+why VO identifiers begin with `ivo://` — just as web addresses begin with `http://`.
 
 ## 1.3 The standards you will use today
 
@@ -94,15 +91,14 @@ is why VO identifiers begin with `ivo://` — just as web addresses begin with `
 
 ## 1.4 Why this matters
 
-The `VO` menu in TOPCAT is not just another menu. It is the door to **every public
-astronomical dataset on the planet**, from a single program, without downloading anything by
-hand.
+The `VO` menu in TOPCAT is not just another menu. It is the door to **every public astronomical
+dataset on the planet**, from a single program, without downloading anything by hand.
 
 > The Virtual Observatory is what lets you cross an optical catalogue from Strasbourg with an
 > infrared catalogue from California and an X-ray catalogue from NASA — on your laptop, in two
 > minutes, without writing a line of code.
 
-For extragalactic work this is not a convenience. It is the infrastructure the field runs on:
+For extragalactic work, this is not a convenience. It is the infrastructure the field runs on:
 nobody builds a multi-band SED or selects AGN by colour without it.
 
 ---
@@ -111,7 +107,7 @@ nobody builds a multi-band SED or selects AGN by colour without it.
 # Part 2 — Exploring a TAP service
 
 Open **`VO → Table Access Protocol (TAP) Query`**, search for `SDSS`, and TOPCAT queries the
-**Registry**: *"who in the world holds tables matching SDSS?"*
+**Registry**: *who in the world holds tables matching SDSS?*
 
 ## 2.1 Reading the service list
 
@@ -124,9 +120,9 @@ TAPVizieR (593/63752) - ivo://cds.vizier/tap
     +------------------------------ Service name
 ```
 
-**The numbers are a real decision criterion.** You do not pick a service by its name — you
-pick it by whether it actually holds what you need. `TAPVizieR` matched 593 SDSS tables;
-`HEASARC` matched 32.
+**The numbers are a real decision criterion.** You do not pick a service by its name — you pick
+it by whether it actually holds what you need. `TAPVizieR` matched 593 SDSS tables; `HEASARC`
+matched 32.
 
 ### Who's who
 
@@ -141,11 +137,12 @@ pick it by whether it actually holds what you need. `TAPVizieR` matched 593 SDSS
 | **ESO TAP_CAT** | ESO | ESO catalogues |
 | **GAIA / ARI-Gaia / Gaia@AIP** | Various mirrors | Gaia only |
 
-**Notice: several services offer SDSS.** There is no single place where data "live". That is
-the whole point of the VO — the data are distributed, and the Registry helps you find where.
+**Notice that several services offer SDSS.** There is no single place where data "live" — and
+that is the whole point of the VO. The data are distributed, and the Registry helps you find
+where.
 
 > **Do not memorise where the data are. Learn to ask the Registry.**
-> Archives change, go down, get renamed. The Registry is the layer that protects you.
+> Archives change, go down, and get renamed. The Registry is the layer that protects you.
 
 **Select `TAPVizieR` and click `Use Service`** (or just double-click it).
 
@@ -180,8 +177,8 @@ the whole point of the VO — the data are distributed, and the Registry helps y
 | `J_AA`, `J_ApJ`, `J_MNRAS`, ... | **Tables from individual papers**, grouped by journal |
 | **`large_tables`** | **"extremely large catalogs"** — the survey-scale catalogues |
 
-`J_ApJ (10721)`: over ten thousand tables published in the *Astrophysical Journal* alone.
-**This is VizieR's real value** — if a paper published a table, it is probably here.
+`J_ApJ (10721)`: over ten thousand tables published in the *Astrophysical Journal* alone. **This
+is VizieR's real value** — if a paper published a table, it is probably here.
 
 ---
 
@@ -201,9 +198,8 @@ TAPVizieR (642/63884)    <-- 642 matches
 
 **Twenty times more results, from one checkbox.**
 
-**Why:** with `Name` only, TOPCAT searches the *table identifier* (`V/154/sdss16`). Most
-tables do not carry the survey name in their identifier — they carry it in their
-**description**.
+**Why:** with `Name` only, TOPCAT searches the *table identifier* (`V/154/sdss16`). Most tables
+do not carry the survey name in their identifier — they carry it in their **description**.
 
 > **When a search returns nothing, the data almost certainly exist.**
 > You are searching the wrong field.
@@ -212,8 +208,8 @@ tables do not carry the survey name in their identifier — they carry it in the
 
 ## 2.4 🔥 TRAP #2: where SDSS actually lives
 
-Even with 642 matches, the main SDSS catalogue is **not** in `II_photometry`, and **not** in
-any folder called `V_something`. It is in:
+Even with 642 matches, the main SDSS catalogue is **not** in `II_photometry`, and **not** in any
+folder called `V_something`. It is in:
 
 ```
 large_tables (8/148)      Description: "extremly large catalogs"   [typo is theirs]
@@ -224,14 +220,14 @@ large_tables (8/148)      Description: "extremly large catalogs"   [typo is thei
     "V/154/sdss16"     <-- the one we want
 ```
 
-VizieR separates survey-scale catalogues (hundreds of millions of rows) from ordinary ones,
-because they need different handling server-side.
+VizieR keeps survey-scale catalogues (hundreds of millions of rows) apart from ordinary ones,
+because they need different handling on the server side.
 
 > **An archive's organisation has an internal logic — but not necessarily *your* logic.**
 > Explore; do not assume.
 
-Every data release is available (DR7 → DR16). Use the most recent unless you have a reason
-not to — and **state in your paper which one you used**.
+Every data release is available (DR7 → DR16). Use the most recent unless you have a reason not
+to — and **state in your paper which one you used**.
 
 ---
 
@@ -286,8 +282,8 @@ zPmag   -->  PETROSIAN magnitude in z band   <-- yet another magnitude!
 
 **`zpmag` and `zPmag` differ by a single capital letter.**
 
-**The query will not warn you.** It will run, return numbers, and produce a plot. The plot
-will simply be *wrong*.
+**The query will not warn you.** It will run, return numbers, and produce a plot. The plot will
+simply be *wrong*.
 
 ---
 
@@ -299,11 +295,11 @@ It is tempting to just use them.
 **Do not.** A PSF magnitude fits the image's point-spread function to the source.
 
 - For a **star** → perfect. The star *is* a PSF.
-- For an **extended galaxy** → **it fits the PSF inside the nucleus and throws away the disc
-  and the halo.**
+- For an **extended galaxy** → **it fits the PSF inside the nucleus and throws away the disc and
+  the halo.**
 
 The flux is systematically underestimated, and the size of the error **depends on angular
-size** — i.e. on redshift and morphology. You would be injecting a bias correlated with
+size** — that is, on redshift and morphology. You would be injecting a bias correlated with
 exactly the variables you want to study.
 
 For colours it is worse: galaxies have colour gradients (red bulges, blue discs), so the PSF
@@ -317,8 +313,8 @@ over-weights the bulge. **Your "red sequence" would be partly an aperture artefa
 
 #### ⚠️ Do not mix apertures
 
-If you measure `r` with a Petrosian aperture and `(g−r)` with model magnitudes, **the point
-you plot does not correspond to any physically consistent object.**
+If you measure `r` with a Petrosian aperture and `(g−r)` with model magnitudes, **the point you
+plot does not correspond to any physically consistent object.**
 
 **Pick one system and use it for everything.** Here: **Petrosian**, magnitude *and* colour.
 
@@ -333,9 +329,9 @@ you plot does not correspond to any physically consistent object.**
 
 If the object has a spectrum, **use `spCl`**.
 
-And note: `spCl` distinguishes **`QSO`** from **`GALAXY`**. Photometric `class=3` would hand
-you quasars along with your galaxies — and a quasar is a point source with a power-law
-continuum. It will sit somewhere completely different on your CMD and contaminate everything.
+And note: `spCl` distinguishes **`QSO`** from **`GALAXY`**. Photometric `class=3` would hand you
+quasars along with your galaxies — and a quasar is a point source with a power-law continuum. It
+would sit somewhere completely different on your CMD and contaminate everything.
 
 ---
 
@@ -348,8 +344,8 @@ f_zsp = 0    -->  the redshift fit is reliable
 f_zsp != 0   -->  the fit failed, the spectrum was bad, something went wrong
 ```
 
-**Without `f_zsp = 0`, your sample contains garbage redshifts.** And once again, the query
-runs perfectly.
+**Without `f_zsp = 0`, your sample contains garbage redshifts.** And once again, the query runs
+perfectly.
 
 **Every survey has flags like this. Find them. Use them.**
 
@@ -369,7 +365,7 @@ runs perfectly.
 A **UCD** (Unified Content Descriptor) is a standard label describing what a column *means*,
 independent of what it is *called*.
 
-`zsp` and `zph` both carry `src.redshift`. Different names, same physical meaning. Two archives
+`zsp` and `zph` both carry `src.redshift`: different names, same physical meaning. Two archives
 may call the same quantity `zsp`, `Z_SPEC`, or `redshift` — but all will tag it `src.redshift`.
 
 **Software can rely on the UCD; it cannot rely on the name.** This is how TOPCAT automatically
@@ -381,8 +377,8 @@ knows which columns are coordinates when you run a cross-match without being tol
 
 Every one of the six traps above **produces a query that runs without error**.
 
-None raises an exception. None prints a warning. Each one quietly returns the wrong sample —
-and you plot it, and it looks perfectly plausible.
+None raises an exception. None prints a warning. Each one quietly returns the wrong sample — and
+you plot it, and it looks perfectly plausible.
 
 > **The database will never tell you that you asked the wrong question.**
 > That is your job.
@@ -434,8 +430,8 @@ WHERE RA_ICRS BETWEEN 320 AND 340
 
 ## 3.2 ⏳ If the query is slow or fails — use the backup file
 
-This query asks VizieR to scan **hundreds of millions of rows**. With everyone querying at
-once, the server may be slow or time out.
+This query asks VizieR to scan **hundreds of millions of rows**. With everyone querying at once,
+the server may be slow or time out.
 
 **Do not sit and wait. If it takes more than ~2 minutes, or fails:**
 
@@ -465,7 +461,7 @@ It is **exactly the result of the query above**. You lose nothing.
 | `DE_ICRS BETWEEN -1.25 AND 1.25` | Stripe 82 is narrow in declination. *This* is what makes it Stripe 82. |
 | `spCl = 'GALAXY'` | Galaxies — **not QSOs, not stars**. |
 | `zsp > 0.02` | Removes spurious redshifts and very nearby objects. |
-| `zsp < 0.2` | **The local universe.**  |
+| `zsp < 0.2` | **The local universe.** |
 | **`f_zsp = 0`** | **The redshift fit is reliable.** |
 | `mode = 1` | Primary detections only — no duplicates. |
 | `clean = 1` | SDSS's own "clean photometry" flag. |
@@ -476,7 +472,6 @@ It is **exactly the result of the query above**. You lose nothing.
 
 ---
 
-
 ## 3.4 What the query does **not** filter — on purpose
 
 - ❌ No magnitude cuts
@@ -485,8 +480,8 @@ It is **exactly the result of the query above**. You lose nothing.
 **Deliberate.** The data you are about to load are **dirty**, and finding that out — and
 deciding what to do about it — is the point of Part 4.
 
-Notice the irony: the query *does* contain **`clean = 1`**, SDSS's own photometry-quality
-flag. You will still find magnitudes of 33. Hold that thought.
+Notice the irony: the query *does* contain **`clean = 1`**, SDSS's own photometry-quality flag.
+You will still find magnitudes of 33. Hold that thought.
 
 ---
 
@@ -582,8 +577,8 @@ indexed:
 
 **`Views → Table Data`** (the grid icon).
 
-Check the query did what you thought: `RA_ICRS` in [320, 340], `DE_ICRS` in [−1.25, 1.25],
-`zsp` in [0.02, 0.2], `spCl` = `GALAXY` everywhere.
+Check that the query did what you thought: `RA_ICRS` in [320, 340], `DE_ICRS` in [−1.25, 1.25],
+`zsp` in [0.02, 0.2], and `spCl` = `GALAXY` everywhere.
 
 ---
 
@@ -667,11 +662,11 @@ AND clean = 1     -- "the photometry is clean"
 
 ## 4.4 Why this would destroy your plot
 
-A galaxy with `uPmag = 33` and `rPmag = 17` gives a colour of **`u−r = 16`**. A real galaxy
-has `u−r` between roughly **0.5 and 3.5**.
+A galaxy with `uPmag = 33` and `rPmag = 17` gives a colour of **`u−r = 16`**. A real galaxy has
+`u−r` between roughly **0.5 and 3.5**.
 
-**That single point stretches your y-axis from 0–3.5 to 0–16.** Your entire signal gets
-squashed into a thin band and you see nothing.
+**That single point stretches your y-axis from 0–3.5 to 0–16.** Your entire signal gets squashed
+into a thin band and you see nothing.
 
 **Try it.** Plot it with the garbage in, look at the mess, then come back.
 
@@ -680,7 +675,7 @@ squashed into a thin band and you see nothing.
 ## 4.5 Row subsets — cleaning without deleting
 
 A **subset** **does not delete rows**. It creates a *label* marking which rows satisfy a
-condition. Reversible, and you can keep several at once and compare them.
+condition. It is reversible, and you can keep several at once and compare them.
 
 **`Views → Row Subsets`** → **`New Subset`**
 
@@ -703,8 +698,8 @@ They use a **Java-like** syntax:
 | `==` | equals (**double**) |
 | `!=` | not equal |
 
-**Good news:** unlike ADQL, TOPCAT expressions **are** case-sensitive. `uPmag` means `uPmag`
-and nothing else.
+**Good news:** unlike ADQL, TOPCAT expressions **are** case-sensitive. `uPmag` means `uPmag` and
+nothing else.
 
 ### Two kinds of cut — and why you need both
 
@@ -714,8 +709,7 @@ and nothing else.
 `uPmag = 21.9` (garbage, but under the cut) and `rPmag = 17` (fine) **passes the magnitude
 filter** — and hands you `u−r = 4.9`.
 
-> **Filtering the magnitudes is not enough. You have to filter the quantity you actually
-> plot.**
+> **Filtering the magnitudes is not enough. You have to filter the quantity you actually plot.**
 
 ### 🎓 Exercise
 
@@ -728,8 +722,7 @@ e_zsp < 0.001 && e_uPmag < 0.5 && e_rPmag < 0.2
 How many survive? Does the bimodality still appear? **Does your conclusion depend on which
 cleaning strategy you chose?**
 
-If it does, that is important. If it does not, that is *also* important — your result is
-robust.
+If it does, that is important. If it does not, that is *also* important — your result is robust.
 
 ---
 
@@ -807,9 +800,9 @@ wrong.
 The K-correction **depends on the galaxy's colour**. A red and a blue galaxy at the same
 redshift get *different* corrections.
 
-**Omit it, and you introduce an error correlated with the very axis you are trying to
-measure.** You would shift your two populations by different amounts — distorting the
-separation you want to study.
+**Omit it, and you introduce an error correlated with the very axis you are trying to measure.**
+You would shift your two populations by different amounts — distorting the separation you want to
+study.
 
 ---
 
@@ -821,8 +814,8 @@ separation you want to study.
 | **Selection function** | Large | **Yes.** SDSS is flux-limited, and red galaxies are fainter at fixed mass — they drop out first. |
 | **Aperture effects** | Small (Petrosian is designed to minimise them) | Mildly |
 
-> **Omitting extinction degrades your precision. Omitting the K-correction biases your
-> result.** These are not the same kind of error.
+> **Omitting extinction degrades your precision. Omitting the K-correction biases your result.**
+> These are not the same kind of error.
 
 ---
 
@@ -837,8 +830,8 @@ separation you want to study.
 | **Axes** | tick **`X Flip`** — $M_r$ is negative; bright galaxies on the left |
 | **Subset** | `good` |
 
-You get a solid red blob. **That is the problem.** With ~6,800 opaque points drawn on top of
-one another, the dense region saturates and you lose all density information.
+You get a solid red blob. **That is the problem.** With ~6,800 opaque points drawn on top of one
+another, the dense region saturates and you lose all density information.
 
 ### Add contours
 
@@ -856,14 +849,14 @@ Bottom panel → tab **`Form`** → green **`+ Forms`** → **`Contour`**.
 
 ### `Level Count`
 
-How many contour lines. Like a topographic map: each line joins points of equal density.
+How many contour lines to draw. Like a topographic map: each line joins points of equal density.
 
 - **Few (3–5):** coarse structure. **The two peaks stand out.**
 - **Many (15–20):** fine detail, but the plot saturates and the eye loses the global structure.
 
 ### `Smoothing` — the dangerous one
 
-The width of the smoothing kernel. Your data are discrete points; to draw contours TOPCAT first
+The width of the smoothing kernel. Your data are discrete points; to draw contours, TOPCAT first
 estimates a *continuous* density by averaging each point with its neighbours.
 
 | Smoothing | Effect |
@@ -911,8 +904,8 @@ smoothing — it is in the data.
 >
 > **Red galaxies** have stopped forming stars — only old stars remain, so `u−r` is large.
 >
-> **And the valley between them is sparsely populated** — meaning the transition from one to
-> the other is **fast**. Galaxies do not linger in the middle.
+> **And the valley between them is sparsely populated** — meaning the transition from one to the
+> other is **fast**. Galaxies do not linger in the middle.
 
 A real scientific result, obtained in ninety minutes, without writing a single line of code.
 
@@ -925,8 +918,8 @@ The blue peak is **higher** than the red peak.
 **This does *not* mean there are fewer red galaxies in the universe.** It means there are fewer
 in *your sample* — and your sample has a **selection bias**.
 
-SDSS is flux-limited. At fixed stellar mass, red galaxies are **fainter** than blue ones, so
-they drop out of a flux-limited survey first.
+SDSS is flux-limited. At fixed stellar mass, red galaxies are **fainter** than blue ones, so they
+drop out of a flux-limited survey first.
 
 > **Any relative count between populations is biased by the selection function.**
 > Doing this properly requires computing maximum volumes ($V_{max}$) and weighting each galaxy.
@@ -975,8 +968,8 @@ TOPCAT can **do something when you click a row** — in a table, or on a point i
 
 ### ⚠️ The trap in this window
 
-**The `Configuration` panel on the right shows the settings of the action that is
-SELECTED — not the one that is TICKED.**
+**The `Configuration` panel on the right shows the settings of the action that is SELECTED — not
+the one that is TICKED.**
 
 You must do **two separate things**:
 
@@ -1002,8 +995,8 @@ else's settings.
 
 The default is often **`0.2` degrees = 12 arcmin**. **That is enormous.**
 
-A galaxy at z ≈ 0.1 has an angular size of roughly **10–20 arcsec**. At 0.2° you get a wide
-field with dozens of galaxies in it, and yours is a dot in the middle.
+A galaxy at z ≈ 0.1 has an angular size of roughly **10–20 arcsec**. At 0.2° you get a wide field
+with dozens of galaxies in it, and yours is a dot in the middle.
 
 **Use `0.02` degrees** (≈ 1.2 arcmin). The galaxy will fill the frame.
 
@@ -1047,8 +1040,8 @@ superseded a pending one. Normal.
 
 ## 5.5 What you have just demonstrated
 
-> You selected these galaxies by **a number** — the colour `u−r`, computed from two magnitudes
-> in a catalogue.
+> You selected these galaxies by **a number** — the colour `u−r`, computed from two magnitudes in
+> a catalogue.
 >
 > You never looked at an image. You never said anything about shape.
 >
@@ -1064,8 +1057,8 @@ superseded a pending one. Normal.
 
 ## 5.6 ⚠️ But do not oversell it
 
-The blue galaxy you clicked is probably **not a textbook grand-design spiral**. It is more
-likely a fuzzy disc with a bulge.
+The blue galaxy you clicked is probably **not a textbook grand-design spiral**. It is more likely
+a fuzzy disc with a bulge.
 
 - At z ≈ 0.1, SDSS's **seeing** (~1.4″) smears out fine structure. Spiral arms are lost.
 - Colour measures **stellar populations**, not morphology. The correlation is strong — but it is
@@ -1087,9 +1080,9 @@ likely a fuzzy disc with a bulge.
 | **`Run system command`** | Launch an external program with the row's values as arguments. |
 | **`View URL`** | Open a browser at a URL built from the row — e.g. the SDSS SkyServer page. |
 
-**This is how you inspect outliers.** Whenever a point on a plot looks wrong, **click it and
-look at the object.** Half the time it is a blended pair, an artefact, or a satellite trail —
-and you would never have known from the numbers alone.
+**This is how you inspect outliers.** Whenever a point on a plot looks wrong, **click it and look
+at the object.** Half the time it is a blended pair, an artefact, or a satellite trail — and you
+would never have known from the numbers alone.
 
 > **The most under-used debugging tool in astronomy is looking at the image.**
 
@@ -1114,9 +1107,9 @@ structure. **Two galaxies is an anecdote.**
 
 Now let's test it on **three thousand**.
 
-**The catch:** morphology is not in SDSS. It lives in a completely different catalogue,
-produced by different people using a different method. To answer the question **you have no
-choice but to cross-match.**
+**The catch:** morphology is not in SDSS. It lives in a completely different catalogue, produced
+by different people using a different method. To answer the question, **you have no choice but to
+cross-match.**
 
 This is the whole argument for the Virtual Observatory, in one exercise.
 
@@ -1124,8 +1117,8 @@ This is the whole argument for the Virtual Observatory, in one exercise.
 
 ## 6.1 The catalogue: Galaxy Zoo 1
 
-**Galaxy Zoo** asked hundreds of thousands of volunteers to look at SDSS images and classify
-them by eye. Galaxy Zoo 1 (Lintott et al. 2011, MNRAS 410, 166) is the original.
+**Galaxy Zoo** asked hundreds of thousands of volunteers to look at SDSS images and classify them
+by eye. Galaxy Zoo 1 (Lintott et al. 2011, MNRAS 410, 166) is the original.
 
 In VizieR the table is:
 
@@ -1175,8 +1168,8 @@ So the **`fS` class is really "not-elliptical, with visible structure"**. It con
 
 ### And the flags are a *cut*, not a measurement
 
-`fE` and `fS` are binary flags derived from **vote fractions** — an object is flagged only when
-a large majority of volunteers agreed (and after correcting for classification bias).
+`fE` and `fS` are binary flags derived from **vote fractions** — an object is flagged only when a
+large majority of volunteers agreed (and after correcting for classification bias).
 
 **Ambiguous galaxies end up with `fU = 1`** and are flagged as **neither**.
 
@@ -1184,8 +1177,8 @@ a large majority of volunteers agreed (and after correcting for classification b
 
 **How many galaxies have `fU = 1`?**
 
-If that number is large, then the objects you *are* classifying are only the most
-**visually obvious** ones — and **you are seeing a cleaner correlation than actually exists.**
+If that number is large, then the objects you *are* classifying are only the most **visually
+obvious** ones — and **you are seeing a cleaner correlation than actually exists.**
 
 You have selected for unambiguity. That is a bias, and it is a bias *towards your own
 conclusion*.
@@ -1216,8 +1209,8 @@ WHERE RAJ2000 BETWEEN 320 AND 340
 | `fE, fS, fU` | The three morphology flags |
 | *(no filter on the flags)* | **Deliberate** — we want to count the uncertain ones |
 
-> **Expect many more galaxies than your 7,539.** Galaxy Zoo does not require a spectrum;
-> your SDSS sample does. **This asymmetry matters — see §6.6.**
+> **Expect many more galaxies than your 7,539.** Galaxy Zoo does not require a spectrum; your
+> SDSS sample does. **This asymmetry matters — see §6.6.**
 
 ---
 
@@ -1273,11 +1266,11 @@ surprises you, the first thing you check is which subset is active.*
 
 If you use `All from 1`, your output has **exactly 6,851 rows** — the same as your input.
 
-**It looks like a 100% match rate.** It is not. Open the table and you will see half the
-Galaxy Zoo columns are **blank**.
+**It looks like a 100% match rate.** It is not. Open the table and you will see half the Galaxy
+Zoo columns are **blank**.
 
-> **A cross-match that returns the same number of rows as your input table is a red flag,
-> not a success.**
+> **A cross-match that returns the same number of rows as your input table is a red flag, not a
+> success.**
 
 **With `1 and 2` you should get about 3,053 rows.**
 
@@ -1297,8 +1290,8 @@ Galaxy Zoo columns are **blank**.
 
 The astrometry is fine (see §6.7). The radius is fine. The method worked.
 
-**Galaxy Zoo simply did not classify every SDSS galaxy.** It has its **own selection
-function** — magnitude limits, angular-size limits, image-quality criteria.
+**Galaxy Zoo simply did not classify every SDSS galaxy.** It has its **own selection function** —
+magnitude limits, angular-size limits, image-quality criteria.
 
 > **Cross-matching two catalogues does not give you their union.**
 > **It gives you the INTERSECTION of two selection functions.**
@@ -1320,8 +1313,8 @@ probably preferentially lost:
 
 ### 🎓 Exercise
 
-Plot a **histogram of `zsp`** for the matched table, and compare it with the same histogram
-for the full sample.
+Plot a **histogram of `zsp`** for the matched table, and compare it with the same histogram for
+the full sample.
 
 **Did the peak shift to lower redshift?** If so, you have confirmed the bias.
 
@@ -1444,8 +1437,8 @@ That is the quantitative confirmation of what you saw by eye with two cutouts in
 > **That they correlate is a deep physical fact** — it means the processes that shut down star
 > formation are linked to the processes that destroy discs.
 >
-> **That they do not correlate *perfectly* is equally deep** — it means the two can be
-> decoupled. A galaxy can be quenched without losing its disc.
+> **That they do not correlate *perfectly* is equally deep** — it means the two can be decoupled.
+> A galaxy can be quenched without losing its disc.
 
 ---
 
@@ -1509,8 +1502,8 @@ Every one of these **produces output that looks fine**. None of them throws an e
 >
 > **The flag will never tell you that it missed something.**
 >
-> **The cross-match will never tell you that it threw away half your sample — and that the
-> half it threw away was not random.**
+> **The cross-match will never tell you that it threw away half your sample — and that the half
+> it threw away was not random.**
 >
 > **That is your job.**
 
@@ -1520,15 +1513,15 @@ Every one of these **produces output that looks fine**. None of them throws an e
 
 Not TOPCAT. TOPCAT is buttons; you can look those up.
 
-What you learned is a **habit of suspicion** applied in a specific order:
+What you learned is a **habit of suspicion**, applied in a specific order:
 
 1. **Explore the schema before you query.** Names lie; descriptions and UCDs do not.
 2. **Look at the statistics before you plot.** Minima, maxima, nulls.
 3. **Filter the quantity you actually plot** — not just its ingredients.
 4. **Verify every result with a method that does not share the first method's assumptions.**
    Contours have a smoothing parameter; a histogram does not.
-5. **Click on the outliers and look at the image.** It is the most under-used debugging tool
-   in astronomy.
+5. **Click on the outliers and look at the image.** It is the most under-used debugging tool in
+   astronomy.
 6. **Ask what your sample lost, and whether the loss was random.** It usually was not.
 7. **Say out loud what you did not correct for.**
 

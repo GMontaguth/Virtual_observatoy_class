@@ -15,33 +15,29 @@ público, limpiarla, calcular sus magnitudes absolutas, y descubrir que las gala
 
 Después vas a hacer clic en un punto de tu gráfico y **ver la galaxia**.
 
-Finalmente, vas a cruzar con **Galaxy Zoo** y comprobar, con tres mil galaxias, si el color
-realmente predice la morfología.
-
 Sin código. Noventa minutos.
 
 ---
 
 ## A dónde vas a llegar
 
-**Este es el resultado final. Esto es lo que deberías tener en pantalla al terminar:**
+**Este es el resultado final — lo que deberías tener en pantalla al terminar la sesión:**
 
 ![Diagrama color-magnitud con dos galaxias](images/cmd-two-galaxies.png)
 
-A la izquierda: el **diagrama color-magnitud**, con contornos que revelan **dos picos
+A la izquierda, el **diagrama color-magnitud**, con contornos que revelan **dos picos
 separados**.
 
 A la derecha, dos galaxias sobre las que hiciste clic directamente en ese gráfico:
 
 - **Arriba** — del **pico superior** (`u−r ≈ 2.7`): una **elíptica lisa y amarillenta**.
   Sin estructura.
-- **Abajo** — del **pico inferior** (`u−r ≈ 1.7`): un **disco más azul** con estructura
-  visible y un núcleo brillante.
+- **Abajo** — del **pico inferior** (`u−r ≈ 1.7`): un **disco más azul** con estructura visible
+  y un núcleo brillante.
 
 **Vas a seleccionar estas galaxias usando nada más que un número.** Nunca le vas a decir a la
-computadora nada sobre su forma.
-
-Y sin embargo, los dos picos resultan ser **dos tipos de galaxia que se ven distintos**.
+computadora nada sobre su forma — y aun así, los dos picos resultan ser **dos tipos de galaxia
+que se ven distintos**.
 
 Ese es el destino. Ahora vamos.
 
@@ -66,15 +62,15 @@ Ese es el destino. Ahora vamos.
 
 Antes del VO, cada archivo astronómico era una isla:
 
-- SDSS tenía su sitio web, su formato, su forma de buscar.
+- SDSS tenía su sitio web, su formato, su propia interfaz de búsqueda.
 - 2MASS tenía otra.
 - Chandra otra.
 - El catálogo de un paper de 1998 vivía como un `.txt` en la página personal de alguien.
 
-Para cruzar SDSS con 2MASS tenías que bajar los dos, entender dos formatos distintos, escribir
-un script de conversión, y cruzarlos vos misma. Cada vez. Para cada par de catálogos.
+Para cruzar SDSS con 2MASS tenías que bajar los dos, entender dos formatos distintos, escribir un
+script de conversión, y cruzarlos vos misma — cada vez, para cada par de catálogos.
 
-No era solo tedioso — era una **barrera**. Solo quien sabía programar bien podía hacer ciencia
+No era solo tedioso; era una **barrera**. Solo quien sabía programar bien podía hacer ciencia
 multi-longitud de onda.
 
 ## 1.2 Qué es realmente el VO
@@ -87,8 +83,8 @@ Es un *protocolo* — como HTTP.
 
 El objetivo: usar todos los archivos del mundo **como si fueran una sola base de datos**.
 
-Los estándares los define la **IVOA** (*International Virtual Observatory Alliance*). Por eso
-los identificadores empiezan con `ivo://`, así como las direcciones web empiezan con `http://`.
+Los estándares los define la **IVOA** (*International Virtual Observatory Alliance*). Por eso los
+identificadores empiezan con `ivo://`, así como las direcciones web empiezan con `http://`.
 
 ## 1.3 Los estándares que vas a usar hoy
 
@@ -104,15 +100,15 @@ los identificadores empiezan con `ivo://`, así como las direcciones web empieza
 
 ## 1.4 Por qué esto importa
 
-El menú `VO` de TOPCAT no es un menú más. Es la puerta a **todos los datos astronómicos
-públicos del planeta**, desde un solo programa, sin bajar nada a mano.
+El menú `VO` de TOPCAT no es un menú más. Es la puerta a **todos los datos astronómicos públicos
+del planeta**, desde un solo programa, sin bajar nada a mano.
 
 > El Observatorio Virtual es lo que te permite cruzar un catálogo óptico de Estrasburgo con uno
 > infrarrojo de California y uno de rayos X de la NASA — en tu laptop, en dos minutos, sin
 > escribir una línea de código.
 
-Para trabajo extragaláctico esto no es una comodidad. Es **la infraestructura sobre la que
-corre el campo**: nadie construye una SED multibanda ni selecciona AGN por color sin el VO.
+Para trabajo extragaláctico esto no es una comodidad. Es **la infraestructura sobre la que corre
+el campo**: nadie construye una SED multibanda ni selecciona AGN por color sin el VO.
 
 ---
 ---
@@ -120,7 +116,7 @@ corre el campo**: nadie construye una SED multibanda ni selecciona AGN por color
 # Parte 2 — Explorar un servicio TAP
 
 Abrí **`VO → Table Access Protocol (TAP) Query`**, buscá `SDSS`, y TOPCAT consulta el
-**Registry**: *"¿quién en el mundo tiene tablas que coincidan con SDSS?"*
+**Registry**: *¿quién en el mundo tiene tablas que coincidan con SDSS?*
 
 ## 2.1 Cómo leer la lista de servicios
 
@@ -133,8 +129,8 @@ TAPVizieR (593/63752) - ivo://cds.vizier/tap
     +------------------------------ Nombre del servicio
 ```
 
-**Los números son un criterio de decisión real.** No elegís un servicio por su nombre — lo
-elegís por si tiene lo que buscás. `TAPVizieR` matcheó 593 tablas de SDSS; `HEASARC` matcheó 32.
+**Los números son un criterio de decisión real.** No elegís un servicio por su nombre — lo elegís
+por si tiene lo que buscás. `TAPVizieR` matcheó 593 tablas de SDSS; `HEASARC` matcheó 32.
 
 ### Quién es quién
 
@@ -147,9 +143,10 @@ elegís por si tiene lo que buscás. `TAPVizieR` matcheó 593 tablas de SDSS; `H
 | **IRSA** | Caltech / IPAC | **Infrarrojo**: WISE, Spitzer, Herschel |
 | **PS1DR1 / PS1DR2** | STScI | Pan-STARRS |
 | **ESO TAP_CAT** | ESO | Catálogos de ESO |
+| **GAIA / ARI-Gaia / Gaia@AIP** | Varios espejos | Solo Gaia |
 
-**Fijate: varios servicios ofrecen SDSS.** No hay un único lugar donde "vivan" los datos. Ese es
-el punto del VO — están distribuidos, y el Registry te ayuda a encontrar dónde.
+**Fijate que varios servicios ofrecen SDSS.** No hay un único lugar donde "vivan" los datos — y
+ese es todo el punto del VO. Están distribuidos, y el Registry te ayuda a encontrar dónde.
 
 > **No memorices dónde están los datos. Aprendé a preguntarle al Registry.**
 > Los archivos cambian, se caen, se renombran. El Registry es la capa que te protege.
@@ -187,8 +184,8 @@ el punto del VO — están distribuidos, y el Registry te ayuda a encontrar dón
 | `J_AA`, `J_ApJ`, `J_MNRAS`, ... | **Tablas de papers individuales**, agrupadas por revista |
 | **`large_tables`** | **"extremely large catalogs"** — los catálogos a escala de survey |
 
-`J_ApJ (10721)`: más de diez mil tablas publicadas solo en el *Astrophysical Journal*.
-**Ese es el verdadero valor de VizieR** — si un paper publicó una tabla, probablemente está acá.
+`J_ApJ (10721)`: más de diez mil tablas publicadas solo en el *Astrophysical Journal*. **Ese es
+el verdadero valor de VizieR** — si un paper publicó una tabla, probablemente está acá.
 
 ---
 
@@ -208,8 +205,8 @@ TAPVizieR (642/63884)    <-- 642 resultados
 
 **Veinte veces más resultados, por un solo checkbox.**
 
-**Por qué:** con `Name` solo, TOPCAT busca en el *identificador* de la tabla (`V/154/sdss16`).
-La mayoría de las tablas no llevan el nombre del survey en su identificador — lo llevan en su
+**Por qué:** con `Name` solo, TOPCAT busca en el *identificador* de la tabla (`V/154/sdss16`). La
+mayoría de las tablas no llevan el nombre del survey en su identificador — lo llevan en su
 **descripción**.
 
 > **Cuando una búsqueda no devuelve nada, los datos casi seguro existen.**
@@ -254,8 +251,8 @@ Seleccioná `"V/154/sdss16"` con un clic, y recorré las pestañas de la derecha
 | **`Columns`** | **Cada columna: nombre, tipo, unidad, descripción, UCD. Esta es la pestaña que importa.** |
 | `FKeys` | Claves foráneas — cómo esta tabla se conecta con otras. Avanzado. |
 
-> ⚠️ **Mirá el número de filas en `Table`.** Si dice cientos de millones, tu cláusula `WHERE`
-> más vale que sea selectiva, o vas a esperar una eternidad.
+> ⚠️ **Mirá el número de filas en `Table`.** Si dice cientos de millones, tu cláusula `WHERE` más
+> vale que sea selectiva, o vas a esperar una eternidad.
 
 ---
 
@@ -300,15 +297,15 @@ gráfico simplemente va a estar **mal**.
 
 ### 🔥 TRAMPA #4: las magnitudes PSF están mal para galaxias
 
-Las primeras magnitudes de la lista son `upmag, gpmag, rpmag, ipmag, zpmag` — **magnitudes
-PSF**. Es tentador usarlas.
+Las primeras magnitudes de la lista son `upmag, gpmag, rpmag, ipmag, zpmag` — **magnitudes PSF**.
+Es tentador usarlas.
 
 **No lo hagas.** Una magnitud PSF ajusta la función de dispersión puntual de la imagen a la
 fuente.
 
 - Para una **estrella** → perfecto. La estrella *es* una PSF.
-- Para una **galaxia extendida** → **ajusta la PSF dentro del núcleo y tira a la basura el disco
-  y el halo.**
+- Para una **galaxia extendida** → **ajusta la PSF dentro del núcleo y tira a la basura el disco y
+  el halo.**
 
 El flujo queda sistemáticamente subestimado, y el tamaño del error **depende del tamaño
 angular** — o sea, del redshift y de la morfología. Estarías inyectando un sesgo correlacionado
@@ -342,9 +339,9 @@ corresponde a ningún objeto físicamente consistente.**
 
 Si el objeto tiene espectro, **usá `spCl`**.
 
-Y ojo: `spCl` distingue **`QSO`** de **`GALAXY`**. El `class=3` fotométrico te entregaría
-cuásares junto con tus galaxias — y un cuásar es una fuente puntual con continuo de ley de
-potencias. Va a caer en un lugar completamente distinto de tu CMD y va a contaminar todo.
+Y ojo: `spCl` distingue **`QSO`** de **`GALAXY`**. El `class=3` fotométrico te entregaría cuásares
+junto con tus galaxias — y un cuásar es una fuente puntual con continuo de ley de potencias. Va a
+caer en un lugar completamente distinto de tu CMD y va a contaminar todo.
 
 ---
 
@@ -378,7 +375,7 @@ perfectamente.
 Un **UCD** (*Unified Content Descriptor*) es una etiqueta estándar que describe qué *significa*
 una columna, independientemente de cómo se *llame*.
 
-`zsp` y `zph` llevan ambas `src.redshift`. Nombres distintos, mismo significado físico. Dos
+`zsp` y `zph` llevan ambas `src.redshift`: nombres distintos, mismo significado físico. Dos
 archivos pueden llamar a la misma cantidad `zsp`, `Z_SPEC` o `redshift` — pero todos la van a
 etiquetar `src.redshift`.
 
@@ -423,7 +420,7 @@ Pegá en la caja **`ADQL Text`** y hacé clic en **`Run Query`**:
 SELECT TOP 30000
   RA_ICRS, DE_ICRS,
   "uPmag", "gPmag", "rPmag", "iPmag", "zPmag",
-  e_uPmag, e_gPmag, e_rPmag, e_iPmag, e_zPmag,
+  "e_uPmag", "e_gPmag", "e_rPmag", "e_iPmag", "e_zPmag",
   zsp, e_zsp, spCl
 FROM "V/154/sdss16"
 WHERE RA_ICRS BETWEEN 320 AND 340
@@ -457,9 +454,9 @@ File  →  Load Table  →  seleccioná sdss_stripe82_galaxies.vot  →  OK
 
 Es **exactamente el resultado de la consulta de arriba**. No perdés nada.
 
-> **Esto no es hacer trampa.** Es lo que harías en la vida real. Apenas una consulta lenta
-> tiene éxito, escribís el resultado a disco para no volver a depender nunca de un servidor
-> remoto para los mismos datos.
+> **Esto no es hacer trampa.** Es lo que harías en la vida real. Apenas una consulta lenta tiene
+> éxito, escribís el resultado a disco para no volver a depender nunca de un servidor remoto para
+> los mismos datos.
 
 **Si tu consulta sí funcionó:** guardala igual, ahora mismo —
 `File → Save Table(s)` → formato `votable`.
@@ -475,7 +472,7 @@ Es **exactamente el resultado de la consulta de arriba**. No perdés nada.
 | `DE_ICRS BETWEEN -1.25 AND 1.25` | Stripe 82 es angosta en declinación. *Eso* es lo que la hace Stripe 82. |
 | `spCl = 'GALAXY'` | Galaxias — **no QSOs, no estrellas**. |
 | `zsp > 0.02` | Descarta redshifts espurios y objetos muy cercanos. |
-| `zsp < 0.2` | **El universo genuinamente local.** Ver §3.4. |
+| `zsp < 0.2` | **El universo local.** |
 | **`f_zsp = 0`** | **El ajuste del redshift es confiable.** |
 | `mode = 1` | Solo detecciones primarias — sin duplicados. |
 | `clean = 1` | El flag de "fotometría limpia" del propio SDSS. |
@@ -486,20 +483,7 @@ Es **exactamente el resultado de la consulta de arriba**. No perdés nada.
 
 ---
 
-## 3.4 Por qué `z < 0.2` y no `z < 0.3`
-
-| Razón | Efecto |
-|---|---|
-| **La corrección K se achica.** ~0,2 mag en `r` a z=0,2, contra ~0,4 a z=0,3 | Menos residuo sistemático |
-| **La incompletitud baja drásticamente.** La muestra espectroscópica de SDSS es limitada en flujo | A z=0,3 solo ves galaxias intrínsecamente muy brillantes — y el truncamiento **depende del color**, porque las rojas son más débiles a igual masa |
-| **La cosmología deja de importar.** A z<0,2, Ωm = 0,3 vs 0,25 es despreciable | No tenés que preocuparte por haber elegido la cosmología "correcta" |
-
-**Qué perdés:** algo de estadística y un poco de rango dinámico en $M_r$. **Un precio barato** —
-la bimodalidad se ve perfectamente bien con 7.000 galaxias.
-
----
-
-## 3.5 Lo que la consulta **no** filtra — a propósito
+## 3.4 Lo que la consulta **no** filtra — a propósito
 
 - ❌ Sin cortes de magnitud
 - ❌ Sin cortes de color
@@ -507,12 +491,12 @@ la bimodalidad se ve perfectamente bien con 7.000 galaxias.
 **Deliberado.** Los datos que estás por cargar están **sucios**, y descubrir eso — y decidir qué
 hacer al respecto — es el punto de la Parte 4.
 
-Fijate en la ironía: la consulta *sí* contiene **`clean = 1`**, el flag de calidad fotométrica
-del propio SDSS. Y aun así vas a encontrar magnitudes de 33. Guardá ese pensamiento.
+Fijate en la ironía: la consulta *sí* contiene **`clean = 1`**, el flag de calidad fotométrica del
+propio SDSS. Y aun así vas a encontrar magnitudes de 33. Guardá ese pensamiento.
 
 ---
 
-## 3.6 🔥 TRAMPA #7: ADQL no distingue mayúsculas — y te va a frenar
+## 3.5 🔥 TRAMPA #7: ADQL no distingue mayúsculas — y te va a frenar
 
 Corré la consulta **sin** las comillas dobles y obtenés:
 
@@ -523,8 +507,8 @@ Incorrect ADQL query: 6 unresolved identifiers
   ...
 ```
 
-**El parser de ADQL no distingue mayúsculas de minúsculas.** Cuando escribís `uPmag`, el
-servidor genuinamente no sabe si te referís a `upmag` (**PSF**) o a `uPmag` (**Petrosian**).
+**El parser de ADQL no distingue mayúsculas de minúsculas.** Cuando escribís `uPmag`, el servidor
+genuinamente no sabe si te referís a `upmag` (**PSF**) o a `uPmag` (**Petrosian**).
 
 ### La solución: encomillar el identificador
 
@@ -554,7 +538,7 @@ PSF de galaxias.
 
 ---
 
-## 3.7 Por qué la consulta es lenta: leer la columna `Indexed`
+## 3.6 Por qué la consulta es lenta: leer la columna `Indexed`
 
 La demora no es un bug. Es información.
 
@@ -606,7 +590,7 @@ indexada**, contra cientos de millones de filas.
 **`Views → Table Data`** (el ícono de grilla).
 
 Verificá que la consulta hizo lo que creías: `RA_ICRS` en [320, 340], `DE_ICRS` en
-[−1,25, 1,25], `zsp` en [0,02, 0,2], `spCl` = `GALAXY` en todas.
+[−1,25, 1,25], `zsp` en [0,02, 0,2], y `spCl` = `GALAXY` en todas.
 
 ---
 
@@ -639,9 +623,9 @@ spCl                           GALAXY     GALAXY    7539
 
 `uPmag` tiene **7.538** valores buenos, no 7.539. **Una galaxia no tiene magnitud `u`.**
 
-Una galaxia no es nada. Pero el hábito lo es todo: esa galaxia va a **desaparecer en silencio**
-de cualquier gráfico que use la banda `u`, y TOPCAT no te lo va a decir. En otro catálogo podrían
-ser 3.000.
+Una galaxia no es nada. Pero el hábito lo es todo: esa galaxia va a **desaparecer en silencio** de
+cualquier gráfico que use la banda `u`, y TOPCAT no te lo va a decir. En otro catálogo podrían ser
+3.000.
 
 ### 2. Las magnitudes contienen basura
 
@@ -691,8 +675,8 @@ AND clean = 1     -- "la fotometría está limpia"
 
 ## 4.4 Por qué esto destruiría tu gráfico
 
-Una galaxia con `uPmag = 33` y `rPmag = 17` da un color de **`u−r = 16`**. Una galaxia real
-tiene `u−r` entre aproximadamente **0,5 y 3,5**.
+Una galaxia con `uPmag = 33` y `rPmag = 17` da un color de **`u−r = 16`**. Una galaxia real tiene
+`u−r` entre aproximadamente **0,5 y 3,5**.
 
 **Ese único punto estira tu eje Y de 0–3,5 a 0–16.** Toda tu señal se aplasta en una franja
 delgada y no ves nada.
@@ -739,8 +723,7 @@ Usan una sintaxis tipo **Java**:
 con `uPmag = 21.9` (basura, pero bajo el corte) y `rPmag = 17` (bien). **Pasa el filtro de
 magnitud** — y te entrega `u−r = 4.9`.
 
-> **Filtrar las magnitudes no alcanza. Tenés que filtrar la cantidad que efectivamente
-> ploteás.**
+> **Filtrar las magnitudes no alcanza. Tenés que filtrar la cantidad que efectivamente ploteás.**
 
 ### 🎓 Ejercicio
 
@@ -750,8 +733,8 @@ Construí un segundo subset usando los **errores**:
 e_zsp < 0.001 && e_uPmag < 0.5 && e_rPmag < 0.2
 ```
 
-¿Cuántas sobreviven? ¿Sigue apareciendo la bimodalidad? **¿Tu conclusión depende de qué
-estrategia de limpieza elegiste?**
+¿Cuántas sobreviven? ¿Sigue apareciendo la bimodalidad? **¿Tu conclusión depende de qué estrategia
+de limpieza elegiste?**
 
 Si depende, eso es importante. Si no depende, *también* es importante — tu resultado es robusto.
 
@@ -784,9 +767,9 @@ columnas**.
 
 ## 4.7 Magnitud absoluta — hacer que el eje X sea físico
 
-La magnitud aparente **no es una propiedad de la galaxia**. Depende de la distancia. Un eje en
-`r` aparente mezcla "galaxias intrínsecamente brillantes lejos" con "galaxias débiles cerca".
-Eso es geometría, no física.
+La magnitud aparente **no es una propiedad de la galaxia**. Depende de la distancia. Un eje en `r`
+aparente mezcla "galaxias intrínsecamente brillantes lejos" con "galaxias débiles cerca". Eso es
+geometría, no física.
 
 Tenés `zsp`. Usalo.
 
@@ -802,8 +785,7 @@ $$M_r = m_r - \mathrm{DM}(z) - K_r(z,\ u{-}r)$$
 | **`KCorrections`** | `kCorr(filter, redshift, colorType, colorValue)`. Basado en **Chilingarian, Melchior & Zolotukhin (2010)**, válido para **0 < z < 0,5**. |
 
 > **Esta ventana es la pestaña `Columns`, pero para operaciones.** El mismo hábito: **explorá
-> antes de asumir.** No escribas a mano una aproximación de algo que la herramienta ya hace
-> bien.
+> antes de asumir.** No escribas a mano una aproximación de algo que la herramienta ya hace bien.
 
 Constantes que necesitás: **`KCF_r`** (el filtro r), **`KCC_ur`** (el color u−r de SDSS).
 
@@ -831,12 +813,12 @@ que algo salió mal.
 
 ### Por qué la corrección K importa más de lo que parece
 
-La corrección K **depende del color de la galaxia**. Una roja y una azul al mismo redshift
-reciben correcciones *distintas*.
+La corrección K **depende del color de la galaxia**. Una roja y una azul al mismo redshift reciben
+correcciones *distintas*.
 
-**Si la omitís, introducís un error correlacionado con el eje mismo que querés medir.**
-Estarías desplazando tus dos poblaciones en cantidades diferentes — distorsionando la separación
-que querés estudiar.
+**Si la omitís, introducís un error correlacionado con el eje mismo que querés medir.** Estarías
+desplazando tus dos poblaciones en cantidades diferentes — distorsionando la separación que querés
+estudiar.
 
 ---
 
@@ -907,8 +889,8 @@ primero estima una densidad *continua* promediando cada punto con sus vecinos.
    bimodalidad.
 2. Ponelo en **5** → aparecen grumos por todos lados. Concluirías que hay cinco poblaciones.
 
-**Ninguna de las dos conclusiones es correcta.** Ambas son artefactos de un parámetro que
-elegiste *vos*.
+**Ninguna de las dos conclusiones es correcta.** Ambas son artefactos de un parámetro que elegiste
+*vos*.
 
 > **Si tu resultado depende críticamente de un parámetro de visualización, no es un resultado.**
 > Verificalo con un método que no dependa de ese parámetro.
@@ -927,8 +909,8 @@ elegiste *vos*.
 
 **Dos jorobas y un valle, directo de los conteos crudos.**
 
-**Esta es la verificación.** La bimodalidad de los contornos *no* era un artefacto del suavizado
-— está en los datos.
+**Esta es la verificación.** La bimodalidad de los contornos *no* era un artefacto del suavizado —
+está en los datos.
 
 ---
 
@@ -1034,13 +1016,13 @@ la configuración de otra cosa.
 
 Por defecto suele estar en **`0.2` grados = 12 arcmin**. **Eso es enorme.**
 
-Una galaxia a z ≈ 0,1 tiene un tamaño angular de aproximadamente **10–20 arcsec**. Con 0,2° vas
-a ver un campo amplio con decenas de galaxias, y la tuya va a ser un puntito en el centro.
+Una galaxia a z ≈ 0,1 tiene un tamaño angular de aproximadamente **10–20 arcsec**. Con 0,2° vas a
+ver un campo amplio con decenas de galaxias, y la tuya va a ser un puntito en el centro.
 
 **Usá `0.02` grados** (≈ 1,2 arcmin). La galaxia va a llenar el cuadro.
 
-> El tamaño angular depende del redshift: una galaxia a z=0,05 se va a ver grande, una a z=0,19
-> va a ser diminuta. Un FoV fijo es un compromiso.
+> El tamaño angular depende del redshift: una galaxia a z=0,05 se va a ver grande, una a z=0,19 va
+> a ser diminuta. Un FoV fijo es un compromiso.
 
 ---
 
@@ -1121,8 +1103,8 @@ diseño**. Es más bien un disco difuso con bulbo.
 | **`View URL`** | Abre el navegador en una URL construida a partir de la fila — por ejemplo, la página de SkyServer de ese objeto. |
 
 **Así es como se inspeccionan los outliers.** Cada vez que un punto de un gráfico se vea raro,
-**cliqueálo y mirá el objeto.** La mitad de las veces es un par blended, un artefacto, o un
-rastro de satélite — y de los números solos nunca lo habrías sabido.
+**cliqueálo y mirá el objeto.** La mitad de las veces es un par blended, un artefacto, o un rastro
+de satélite — y de los números solos nunca lo habrías sabido.
 
 > **La herramienta de debugging más subutilizada en astronomía es mirar la imagen.**
 
@@ -1148,7 +1130,7 @@ En la Parte 5 cliqueaste dos galaxias y viste que la roja era lisa y la azul ten
 Ahora probémoslo con **tres mil**.
 
 **El detalle:** la morfología no está en SDSS. Vive en un catálogo completamente distinto,
-producido por otra gente con otro método. Para responder la pregunta **no te queda otra que hacer
+producido por otra gente con otro método. Para responder la pregunta, **no te queda otra que hacer
 un crossmatch.**
 
 Este es el argumento entero del Observatorio Virtual, en un solo ejercicio.
@@ -1383,8 +1365,8 @@ muestra completa.
 
 ### Por qué es tan limpio acá
 
-**Ambos catálogos usan la astrometría de SDSS.** No estás cruzando dos telescopios distintos —
-es **el mismo objeto, medido una vez**. Las diferencias son de redondeo y de época de reducción.
+**Ambos catálogos usan la astrometría de SDSS.** No estás cruzando dos telescopios distintos — es
+**el mismo objeto, medido una vez**. Las diferencias son de redondeo y de época de reducción.
 
 ### ⚠️ Pero mirá la cola
 
