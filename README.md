@@ -8,7 +8,7 @@
 
 | | | |
 |:---:|:---:|:---:|
-| **[English](TOPCAT-workshop-EN.md)** | **[Español](TOPCAT-workshop-ES.md)** | **[Português](TOPCAT-workshop-PT.md)** |
+| 🇬🇧 **[English](TOPCAT-workshop-EN.md)** | 🇪🇸 **[Español](TOPCAT-workshop-ES.md)** | 🇧🇷 **[Português](TOPCAT-workshop-PT.md)** |
 | *main version* | *traducción* | *tradução* |
 
 > **Note:** TOPCAT's interface is in English. In all three versions, **menu names, buttons and
@@ -116,6 +116,20 @@ completely fine. None of them throws an error.
 - **Cosmological distances** — Hogg 2000, [astro-ph/9905116](https://arxiv.org/abs/astro-ph/9905116)
 - **TOPCAT** — M. B. Taylor 2005, ASP Conf. Ser. 347, 29
 
+## Further reading
+
+For the wider picture — what the Virtual Observatory set out to do, and how far it had got —
+start here:
+
+> Chilingarian, I. V. (2009). *Virtual Observatory for Astronomers: Where Are We Now?*
+> In D. Baines & P. Osuna (eds.), **Multi-wavelength Astronomy and Virtual Observatory**, p. 165.
+> [arXiv:0903.0424](https://arxiv.org/abs/0903.0424) ·
+> [ADS](https://ui.adsabs.harvard.edu/abs/2009mavo.proc..165C)
+
+Worth noting: this is the same author whose K-corrections you apply in Part 4 when you compute
+`Mr`. The paper is a good companion to Part 1 of the tutorial — it explains why the standards
+exist rather than just how to click through them.
+
 ---
 
 ## On the use of AI
@@ -125,7 +139,7 @@ Being explicit about this seems more useful than being vague about it — partic
 workshop whose entire argument is that you should know where your outputs came from.
 
 **What the AI did:** drafted the prose of the tutorial, produced the Spanish and Portuguese
-translations.
+translations, and built the slides.
 
 **What it did not do:** the science. The choice of question, the sample, the photometry, the
 quality cuts, every query, and every result in this repository were decided, executed and
