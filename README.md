@@ -8,7 +8,7 @@
 
 | | | |
 |:---:|:---:|:---:|
-| 🇬🇧 **[English](TOPCAT-workshop-EN.md)** | 🇪🇸 **[Español](TOPCAT-workshop-ES.md)** | 🇧🇷 **[Português](TOPCAT-workshop-PT.md)** |
+|**[English](TOPCAT-workshop-EN.md)** | **[Español](TOPCAT-workshop-ES.md)** | **[Português](TOPCAT-workshop-PT.md)** |
 | *main version* | *traducción* | *tradução* |
 
 > **Note:** TOPCAT's interface is in English. In all three versions, **menu names, buttons and
@@ -110,15 +110,15 @@ completely fine. None of them throws an error.
 
 ## Data credits
 
-- **SDSS DR16** — `V/154/sdss16` via [VizieR](https://vizier.cds.unistra.fr/), CDS Strasbourg
-- **Galaxy Zoo 1** — Lintott et al. 2011, MNRAS 410, 166 — `J/MNRAS/410/166`
+- **SDSS DR16** , `V/154/sdss16` via [VizieR](https://vizier.cds.unistra.fr/), CDS Strasbourg
+- **Galaxy Zoo 1** , Lintott et al. 2011, MNRAS 410, 166, `J/MNRAS/410/166`
 - **K-corrections** — Chilingarian, Melchior & Zolotukhin 2010, MNRAS 405, 1409
-- **Cosmological distances** — Hogg 2000, [astro-ph/9905116](https://arxiv.org/abs/astro-ph/9905116)
-- **TOPCAT** — M. B. Taylor 2005, ASP Conf. Ser. 347, 29
+- **Cosmological distances** , Hogg 2000, [astro-ph/9905116](https://arxiv.org/abs/astro-ph/9905116)
+- **TOPCAT** , M. B. Taylor 2005, ASP Conf. Ser. 347, 29
 
 ## Further reading
 
-For the wider picture — what the Virtual Observatory set out to do, and how far it had got —
+For the wider picture, what the Virtual Observatory set out to do, and how far it had got,
 start here:
 
 > Chilingarian, I. V. (2009). *Virtual Observatory for Astronomers: Where Are We Now?*
@@ -127,7 +127,7 @@ start here:
 > [ADS](https://ui.adsabs.harvard.edu/abs/2009mavo.proc..165C)
 
 Worth noting: this is the same author whose K-corrections you apply in Part 4 when you compute
-`Mr`. The paper is a good companion to Part 1 of the tutorial — it explains why the standards
+`Mr`. The paper is a good companion to Part 1 of the tutorial, it explains why the standards
 exist rather than just how to click through them.
 
 ---
@@ -135,7 +135,7 @@ exist rather than just how to click through them.
 ## On the use of AI
 
 **[Claude](https://claude.ai) (Anthropic) was used to write and translate these materials.**
-Being explicit about this seems more useful than being vague about it — particularly in a
+Being explicit about this seems more useful than being vague about it, particularly in a
 workshop whose entire argument is that you should know where your outputs came from.
 
 **What the AI did:** drafted the prose of the tutorial, produced the Spanish and Portuguese
@@ -143,7 +143,7 @@ translations, and built the slides.
 
 **What it did not do:** the science. The choice of question, the sample, the photometry, the
 quality cuts, every query, and every result in this repository were decided, executed and
-verified by the author in TOPCAT. The twelve traps are not hypothetical — they are mistakes
+verified by the author in TOPCAT. The twelve traps are not hypothetical, they are mistakes
 encountered while building this analysis, which is why they are in it.
 
 The same standard the workshop asks of a catalogue applies here: **a tool that produces
