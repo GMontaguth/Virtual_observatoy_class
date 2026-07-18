@@ -21,7 +21,7 @@
 
 Starting from nothing, you will pull a sample of galaxies from a public archive, clean it,
 compute their absolute magnitudes, and discover that galaxies come in **two distinct
-families** — one red and dead, one blue and star-forming.
+families**, one red and dead, one blue and star-forming.
 
 You will then click on a point in your plot and **see the galaxy**.
 
@@ -38,7 +38,7 @@ whether colour really predicts morphology.
 
 | File | What it is |
 |---|---|
-| **`TOPCAT-workshop-EN.md`** | The tutorial — **main version** |
+| **`TOPCAT-workshop-EN.md`** | The tutorial, **main version** |
 | `TOPCAT-workshop-ES.md` | Spanish translation |
 | `TOPCAT-workshop-PT.md` | Portuguese translation |
 | **[`Astronomical-Databases-Workshop.pptx`](Astronomical-Databases-Workshop.pptx)** | **The slides.** 21 slides, with speaker notes. |
@@ -47,7 +47,7 @@ whether colour really predicts morphology.
 
 ### The slides
 
-[**`Astronomical-Databases-Workshop.pptx`**](Astronomical-Databases-Workshop.pptx) — the deck used to teach this
+[**`Astronomical-Databases-Workshop.pptx`**](Astronomical-Databases-Workshop.pptx), the deck used to teach this
 workshop. Roughly ten minutes of context on SIMBAD, VizieR, Aladin and TOPCAT, then screenshots
 walking through each step of the analysis, ending with the Galaxy Zoo cross-match.
 
