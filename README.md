@@ -8,7 +8,7 @@
 
 | | | |
 |:---:|:---:|:---:|
-|**[English](TOPCAT-workshop-EN.md)** | **[Español](TOPCAT-workshop-ES.md)** | **[Português](TOPCAT-workshop-PT.md)** |
+| 🇬🇧 **[English](TOPCAT-workshop-EN.md)** | 🇨🇴 🇨🇱 **[Español](TOPCAT-workshop-ES.md)** | 🇧🇷 **[Português](TOPCAT-workshop-PT.md)** |
 | *main version* | *traducción* | *tradução* |
 
 > **Note:** TOPCAT's interface is in English. In all three versions, **menu names, buttons and
@@ -21,7 +21,7 @@
 
 Starting from nothing, you will pull a sample of galaxies from a public archive, clean it,
 compute their absolute magnitudes, and discover that galaxies come in **two distinct
-families**, one red and dead, one blue and star-forming.
+families** — one red and dead, one blue and star-forming.
 
 You will then click on a point in your plot and **see the galaxy**.
 
@@ -38,21 +38,19 @@ whether colour really predicts morphology.
 
 | File | What it is |
 |---|---|
-| **`TOPCAT-workshop-EN.md`** | The tutorial, **main version** |
+| **`TOPCAT-workshop-EN.md`** | The tutorial — **main version** |
 | `TOPCAT-workshop-ES.md` | Spanish translation |
 | `TOPCAT-workshop-PT.md` | Portuguese translation |
-| **[`Astronomical-Databases-Workshop.pptx.pdf`](Astronomical-Databases-Workshop.pptx.pdf)** | **The slides.** 21 slides, with speaker notes. |
+| **[`Astronomical-Databases-Workshop.pdf`](Astronomical-Databases-Workshop.pdf)** | **The slides.** 22 slides. |
 | **`sdss_stripe82_galaxies.vot`** | **The data.** Use this if the archive is slow or down. |
 | `images/` | Figures |
 
 ### The slides
 
-[**`Astronomical-Databases-Workshop.pptx`**](Astronomical-Databases-Workshop.pptx.pdf), the deck used to teach this
-workshop. Roughly ten minutes of context on SIMBAD, VizieR, Aladin and TOPCAT, then screenshots
-walking through each step of the analysis, ending with the Galaxy Zoo cross-match.
-
-**Every slide has speaker notes** (`View → Notes Page`) saying what to say and where students
-tend to get stuck.
+[**`Astronomical-Databases-Workshop.pdf`**](Astronomical-Databases-Workshop.pdf) — the 22-slide deck
+used to teach this workshop. It opens with about ten minutes of context on SIMBAD, VizieR, Aladin
+and TOPCAT, then walks through each step of the analysis with screenshots, ending with the Galaxy
+Zoo cross-match.
 
 ---
 
@@ -110,15 +108,15 @@ completely fine. None of them throws an error.
 
 ## Data credits
 
-- **SDSS DR16** , `V/154/sdss16` via [VizieR](https://vizier.cds.unistra.fr/), CDS Strasbourg
-- **Galaxy Zoo 1** , Lintott et al. 2011, MNRAS 410, 166, `J/MNRAS/410/166`
+- **SDSS DR16** — `V/154/sdss16` via [VizieR](https://vizier.cds.unistra.fr/), CDS Strasbourg
+- **Galaxy Zoo 1** — Lintott et al. 2011, MNRAS 410, 166 — `J/MNRAS/410/166`
 - **K-corrections** — Chilingarian, Melchior & Zolotukhin 2010, MNRAS 405, 1409
-- **Cosmological distances** , Hogg 2000, [astro-ph/9905116](https://arxiv.org/abs/astro-ph/9905116)
-- **TOPCAT** , M. B. Taylor 2005, ASP Conf. Ser. 347, 29
+- **Cosmological distances** — Hogg 2000, [astro-ph/9905116](https://arxiv.org/abs/astro-ph/9905116)
+- **TOPCAT** — M. B. Taylor 2005, ASP Conf. Ser. 347, 29
 
 ## Further reading
 
-For the wider picture, what the Virtual Observatory set out to do, and how far it had got,
+For the wider picture — what the Virtual Observatory set out to do, and how far it had got —
 start here:
 
 > Chilingarian, I. V. (2009). *Virtual Observatory for Astronomers: Where Are We Now?*
@@ -127,7 +125,7 @@ start here:
 > [ADS](https://ui.adsabs.harvard.edu/abs/2009mavo.proc..165C)
 
 Worth noting: this is the same author whose K-corrections you apply in Part 4 when you compute
-`Mr`. The paper is a good companion to Part 1 of the tutorial, it explains why the standards
+`Mr`. The paper is a good companion to Part 1 of the tutorial — it explains why the standards
 exist rather than just how to click through them.
 
 ---
@@ -135,7 +133,7 @@ exist rather than just how to click through them.
 ## On the use of AI
 
 **[Claude](https://claude.ai) (Anthropic) was used to write and translate these materials.**
-Being explicit about this seems more useful than being vague about it, particularly in a
+Being explicit about this seems more useful than being vague about it — particularly in a
 workshop whose entire argument is that you should know where your outputs came from.
 
 **What the AI did:** drafted the prose of the tutorial, produced the Spanish and Portuguese
@@ -143,7 +141,7 @@ translations, and built the slides.
 
 **What it did not do:** the science. The choice of question, the sample, the photometry, the
 quality cuts, every query, and every result in this repository were decided, executed and
-verified by the author in TOPCAT. The twelve traps are not hypothetical, they are mistakes
+verified by the author in TOPCAT. The twelve traps are not hypothetical — they are mistakes
 encountered while building this analysis, which is why they are in it.
 
 The same standard the workshop asks of a catalogue applies here: **a tool that produces
