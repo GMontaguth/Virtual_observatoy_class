@@ -41,7 +41,7 @@ whether colour really predicts morphology.
 | **`TOPCAT-workshop-EN.md`** | The tutorial, **main version** |
 | `TOPCAT-workshop-ES.md` | Spanish translation |
 | `TOPCAT-workshop-PT.md` | Portuguese translation |
-| **[`Astronomical-Databases-Workshop.pptx.pdf`](Astronomical-Databases-Workshop.pptx)** | **The slides.** 21 slides, with speaker notes. |
+| **[`Astronomical-Databases-Workshop.pptx.pdf`](Astronomical-Databases-Workshop.pptx.pdf)** | **The slides.** 21 slides, with speaker notes. |
 | **`sdss_stripe82_galaxies.vot`** | **The data.** Use this if the archive is slow or down. |
 | `images/` | Figures |
 
