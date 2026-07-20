@@ -47,7 +47,7 @@ whether colour really predicts morphology.
 
 ### The slides
 
-[**`Astronomical-Databases-Workshop.pptx`**](Astronomical-Databases-Workshop.pptx), the deck used to teach this
+[**`Astronomical-Databases-Workshop.pptx`**](Astronomical-Databases-Workshop.pptx.pdf), the deck used to teach this
 workshop. Roughly ten minutes of context on SIMBAD, VizieR, Aladin and TOPCAT, then screenshots
 walking through each step of the analysis, ending with the Galaxy Zoo cross-match.
 
